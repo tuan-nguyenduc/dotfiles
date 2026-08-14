@@ -31,8 +31,9 @@ brew "helm"
 # Infra as code
 brew "tfenv" # manages terraform versions; downloads binaries directly from HashiCorp releases
 brew "terragrunt"
-brew "tflint"
 brew "ansible"
+# tflint installed by install.sh via direct binary download (its only brew
+# distribution is a third-party tap: terraform-linters/tap)
 
 # Cloud CLIs
 brew "awscli"

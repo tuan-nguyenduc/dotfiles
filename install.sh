@@ -30,6 +30,28 @@ if command -v tfenv &>/dev/null; then
   tfenv use latest
 fi
 
+if ! command -v tflint &>/dev/null; then
+  echo "==> Installing tflint (direct binary download, no third-party tap)..."
+  case "$(uname -m)" in
+    arm64) tflint_arch="arm64" ;;
+    x86_64) tflint_arch="amd64" ;;
+    *) echo "    unsupported architecture for tflint: $(uname -m), skipping" >&2; tflint_arch="" ;;
+  esac
+  if [[ -n "$tflint_arch" ]]; then
+    tflint_tmp="$(mktemp -d)"
+    trap 'rm -rf "$tflint_tmp"' EXIT
+    curl -sSLo "$tflint_tmp/tflint.zip" \
+      "https://github.com/terraform-linters/tflint/releases/latest/download/tflint_darwin_${tflint_arch}.zip"
+    curl -sSLo "$tflint_tmp/checksums.txt" \
+      "https://github.com/terraform-linters/tflint/releases/latest/download/checksums.txt"
+    (cd "$tflint_tmp" && grep "tflint_darwin_${tflint_arch}.zip" checksums.txt | shasum -a 256 -c -)
+    unzip -q "$tflint_tmp/tflint.zip" -d "$tflint_tmp"
+    install -m 0755 "$tflint_tmp/tflint" "$(brew --prefix)/bin/tflint"
+    rm -rf "$tflint_tmp"
+    trap - EXIT
+  fi
+fi
+
 echo "==> Linking dotfiles with stow..."
 for package in "${STOW_PACKAGES[@]}"; do
   while IFS= read -r -d '' src; do
