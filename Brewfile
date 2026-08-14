@@ -4,6 +4,7 @@ brew "gh"
 brew "stow"
 brew "curl"
 brew "wget"
+cask "claude-code"
 
 # Shell / terminal
 brew "starship"
