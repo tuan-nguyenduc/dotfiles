@@ -1,3 +1,5 @@
+tap "hashicorp/tap"
+
 # Core
 brew "git"
 brew "gh"
@@ -29,7 +31,7 @@ brew "k9s"
 brew "helm"
 
 # Infra as code
-brew "terraform"
+brew "hashicorp/tap/terraform"
 brew "terragrunt"
 brew "tflint"
 brew "ansible"
