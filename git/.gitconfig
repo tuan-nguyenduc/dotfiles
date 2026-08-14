@@ -1,0 +1,15 @@
+# Managed by dotfiles (stow package: git)
+# Fill in [user] before pushing anywhere.
+
+[user]
+	name =
+	email =
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[core]
+	editor = vim
