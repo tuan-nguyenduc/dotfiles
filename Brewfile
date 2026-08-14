@@ -1,5 +1,3 @@
-tap "hashicorp/tap"
-
 # Core
 brew "git"
 brew "gh"
@@ -31,7 +29,7 @@ brew "k9s"
 brew "helm"
 
 # Infra as code
-brew "hashicorp/tap/terraform"
+brew "tfenv" # manages terraform versions; downloads binaries directly from HashiCorp releases
 brew "terragrunt"
 brew "tflint"
 brew "ansible"

@@ -24,6 +24,12 @@ if ! command -v stow &>/dev/null; then
   brew install stow
 fi
 
+if command -v tfenv &>/dev/null; then
+  echo "==> Installing latest terraform via tfenv..."
+  tfenv install latest
+  tfenv use latest
+fi
+
 echo "==> Linking dotfiles with stow..."
 for package in "${STOW_PACKAGES[@]}"; do
   while IFS= read -r -d '' src; do
