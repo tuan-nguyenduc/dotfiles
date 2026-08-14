@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # One-command bootstrap for a fresh macOS machine.
 #
-#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tuan-nguyenduc/dotfiles/main/bootstrap.sh)"
+#   /bin/bash -c "$(curl -fsSL --retry 3 --retry-delay 2 https://raw.githubusercontent.com/tuan-nguyenduc/dotfiles/main/bootstrap.sh)"
+#
+# raw.githubusercontent.com's CDN occasionally returns a transient 503;
+# --retry makes curl retry instead of failing outright.
 #
 # Installs Xcode Command Line Tools + Homebrew, clones this repo to
 # ~/dotfiles, then hands off to install.sh.
@@ -24,7 +27,7 @@ fi
 
 if ! command -v brew &>/dev/null; then
   echo "==> Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL --retry 3 --retry-delay 2 https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   elif [[ -x /usr/local/bin/brew ]]; then
