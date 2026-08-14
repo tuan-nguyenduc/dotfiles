@@ -39,13 +39,14 @@ if ! command -v tflint &>/dev/null; then
   esac
   if [[ -n "$tflint_arch" ]]; then
     tflint_tmp="$(mktemp -d)"
+    tflint_zip="tflint_darwin_${tflint_arch}.zip"
     trap 'rm -rf "$tflint_tmp"' EXIT
-    curl -sSLo "$tflint_tmp/tflint.zip" \
-      "https://github.com/terraform-linters/tflint/releases/latest/download/tflint_darwin_${tflint_arch}.zip"
+    curl -sSLo "$tflint_tmp/$tflint_zip" \
+      "https://github.com/terraform-linters/tflint/releases/latest/download/$tflint_zip"
     curl -sSLo "$tflint_tmp/checksums.txt" \
       "https://github.com/terraform-linters/tflint/releases/latest/download/checksums.txt"
-    (cd "$tflint_tmp" && grep "tflint_darwin_${tflint_arch}.zip" checksums.txt | shasum -a 256 -c -)
-    unzip -q "$tflint_tmp/tflint.zip" -d "$tflint_tmp"
+    (cd "$tflint_tmp" && grep "$tflint_zip" checksums.txt | shasum -a 256 -c -)
+    unzip -q "$tflint_tmp/$tflint_zip" -d "$tflint_tmp"
     install -m 0755 "$tflint_tmp/tflint" "$(brew --prefix)/bin/tflint"
     rm -rf "$tflint_tmp"
     trap - EXIT
