@@ -1,8 +1,9 @@
 # Managed by dotfiles (stow package: git)
+# Per-machine identity lives outside this repo, in ~/.gitconfig.local
+# (created by install.sh on first run) so this file stays reusable by anyone.
 
-[user]
-	name = tuanduke
-	email = tuannguyenduc.work@gmail.com
+[include]
+	path = ~/.gitconfig.local
 
 [init]
 	defaultBranch = main

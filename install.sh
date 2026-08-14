@@ -68,4 +68,11 @@ for package in "${STOW_PACKAGES[@]}"; do
   stow -v -R -t "$HOME" "$package"
 done
 
+if [[ ! -f "$HOME/.gitconfig.local" ]]; then
+  echo "==> Setting up your git identity (stored in ~/.gitconfig.local, not tracked in this repo)..."
+  read -rp "    Git user.name: " git_name
+  read -rp "    Git user.email: " git_email
+  printf '[user]\n\tname = %s\n\temail = %s\n' "$git_name" "$git_email" > "$HOME/.gitconfig.local"
+fi
+
 echo "==> Done. Restart your shell (or run: exec zsh)."
