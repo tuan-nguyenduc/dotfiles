@@ -1,9 +1,8 @@
 # Managed by dotfiles (stow package: git)
-# Fill in [user] before pushing anywhere.
 
 [user]
-	name =
-	email =
+	name = tuanduke
+	email = tuannguyenduc.work@gmail.com
 
 [init]
 	defaultBranch = main
