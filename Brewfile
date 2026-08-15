@@ -5,6 +5,7 @@ brew "stow"
 brew "curl"
 brew "wget"
 cask "claude-code"
+cask "visual-studio-code"
 
 # Shell / terminal
 brew "starship"
