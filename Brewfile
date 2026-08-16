@@ -4,6 +4,7 @@ brew "gh"
 brew "stow"
 brew "curl"
 brew "wget"
+brew "python"
 cask "claude-code"
 cask "visual-studio-code"
 
