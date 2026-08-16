@@ -19,3 +19,5 @@ fi
 alias ll="ls -lah"
 alias k="kubectl"
 alias tf="terraform"
+alias python="python3"
+alias pip="pip3"
