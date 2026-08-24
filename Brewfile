@@ -5,6 +5,7 @@ brew "stow"
 brew "curl"
 brew "wget"
 brew "python"
+brew "libpq" # provides psql CLI
 cask "claude-code"
 cask "visual-studio-code"
 

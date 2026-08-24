@@ -4,6 +4,10 @@ if command -v brew &>/dev/null; then
   eval "$(brew shellenv)"
 fi
 
+if [[ -d "$(brew --prefix libpq 2>/dev/null)/bin" ]]; then
+  export PATH="$(brew --prefix libpq)/bin:$PATH"
+fi
+
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
