@@ -9,6 +9,7 @@ brew "node"
 brew "libpq" # provides psql CLI
 cask "claude-code"
 cask "visual-studio-code"
+cask "ollama"
 
 # Shell / terminal
 brew "starship"
